@@ -4,22 +4,22 @@ body {
     font-family: 'Indie Flower', cursive;
 }
 
-.bg_grey {
-    background-color: grey;
-}
-
-.m_left {
-    margin-left: 0;
-}
-
-.done {
-    text-decoration: line-through;
-}
-
 .text-b {
     color: black;
 }
 
-p {
-    margin-bottom: 0 !important;
+.done_class {
+    text-decoration: line-through;
+}
+
+.bg_gray {
+    background-color: gray;
+}
+
+.bg_blue {
+    background-color: lightskyblue;
+}
+
+.f_em {
+    font-size: 1.5em;
 }

@@ -14,25 +14,26 @@
         <h1 class="text-center m-4 text-uppercase">to do note</h1>
 
         <div class="d-flex justify-content-center align-content-center my-3 container">
-            <input @keyup.enter="methodAddTodo()" type="text" class="me-3 form-control" placeholder="Scrivi qui le tue note" v-model="newTodo">
-            <button type="button" class="btn btn-dark" @click="methodAddTodo()">Aggiungi</button>
+            <input type="text" class="me-3 form-control" placeholder="Scrivi qui le tue note" v-model="newTodo" @keyup.enter="newStringUser">
+            <button type="button" class="btn btn-dark" @click="newStringUser">Aggiungi</button>
         </div>
 
-        
-        <div class="container mt-5 rounded-3 bg_grey p-5 ">
-            <!--Questo div, con il v-if compare quando la lunghezza dell'array è maggiore di zero-->
-            <!--Comnpare quando v-if è true-->
-            <div class="w-50 mx-auto d-flex flex-column" v-if="todos.length > 0">
-                <ul class="d-flex flex-start">
-                    <li v-for="(todo, index) in todos" :key="index" class="d-flex mb-3 justify-content-between bg_grey border border-dark align-items-center">
-                        <p :class="(todo.done == true) ? 'doneFunction()' : ''" @click="done(todo)" class="text-b">{{todo.text}} </p>
-                        <i class="fa-solid fa-circle-xmark text-danger" @click="methodRemoveTodo(index)"></i>
+        <div class="container mt-5 rounded-3 bg_gray p-5">
+            <div class="w-50 mx-auto" v-if="todos.length > 0">
+                <ul>
+                    <li class="d-flex mb-3 justify-content-between bg_blue border border-dark align-items-center rounded-3" v-for="(todo, index) in todos" :key="index">
+                        <!--Condizione ternaria nel v-bind che ci permette di aggiungere la classe direttamente-->
+                        <!--La funzione booleana dell'attributo done che cambia al click di funzione per todo perche siamo nel ciclo for-->
+                        <p class="text-b p-3 f_em" :class="(todo.done == true) ? 'done_class' : '' " @click="doneAddRemove(todo)">
+                            {{todo.text}}
+                        </p>
+                        <i class="fa-solid fa-circle-xmark p-3 text-danger mb-3" @click="removeTodo(index)"></i>
                     </li>
                 </ul>
             </div>
-            <!--Questo h2 compare quando la lunghezza dell'array è 0, quindi la condizione del v-if diventa false-->
-            <h2 class="text-dark" v-else="">Non ci sono voci in lista</h2>
+            <h2 v-else="">Non ci sono voci in lista</h2>
         </div>
+
     </div>
 
     

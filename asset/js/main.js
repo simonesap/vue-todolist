@@ -9,7 +9,9 @@
 // MILESTONE 2
 // Visualizzare a fianco ad ogni item ha una "x": cliccando su di essa, il todo viene rimosso dalla lista.
 // MILESTONE 3
-// Predisporre un campo di input testuale e un pulsante "aggiungi": cliccando sul pulsante, il testo digitato viene letto e utilizzato per creare un nuovo todo, che quindi viene aggiunto alla lista dei todo esistenti.
+// Predisporre un campo di input testuale e un pulsante "aggiungi": cliccando sul pulsante, 
+// il testo digitato viene letto e utilizzato per creare un nuovo todo, 
+// che quindi viene aggiunto alla lista dei todo esistenti.
 // Bonus:
 // 1- oltre al click sul pulsante, intercettare anche il tasto ENTER per aggiungere il todo alla lista
 // 2- cliccando sul testo dell'item, invertire il valore della proprietà done del todo corrispondente (se done era uguale a false, impostare true e viceversa)
@@ -21,50 +23,62 @@ var app = new Vue(
         el: '#root',
         data: {
             newTodo: '',
-
+              
+        
             todos: [
-                {
-                text: 'testo della todo 1',
-                done: false,
-            },
-            {
-                text: 'testo della todo 2',
-                done: false,
-            },
-            {
-                text: 'testo della todo 3',
-                done: true,
-            },
+            //     {
+            //     text: 'testo della todo 1',
+            //     done: false,
+            // },
+            // {
+            //     text: 'testo della todo 2',
+            //     done: true,
+            // },
+            // {
+            //     text: 'testo della todo 3',
+            //     done: false,
+            // },
                 
             ]
         },
         methods: {
-            methodRemoveTodo: function(todoIndex){
-                // usiamo lo splice di elemento in base alla posizione dell'indice, quanti elementi togliere da quella posizione
-                this.todos.splice(todoIndex,1);
-            }
-        },
-        
-        methodAddTodo: function(){
-            // Creazione dell'oggeto che verrà pushato
-            let objTodo = {
-                text: this.newTodo,
-                done: false,
-            }
 
-            if(!this.newTodo == ''){
-                this.todos.push(objTodo);
+            // Funzione che toglie una voce dalla lista todo
+            removeTodo: function(todoIndex) {
+                //splice
+                //elemento in base alla posizione dell'indice, quanti
+                //elementi tolgiere da quella posizione
+                this.todos.splice( todoIndex, 1 );
+             },
+             
+            /* Funzione che aggiunge il testo inserito nell'input, dentro la nostr
+            variabile */
+            newStringUser: function(){
+                let newStringObj = {
+                    text: this.newTodo,
+                    done: false,
+                }
+                if( !this.newTodo == '') {
+                this.todos.push(newStringObj)
+
+                //svuotare l'input dopo aver pushato la nuova todo
+                this.newTodo = ''
             }
-            // Svuotare l'input dopo aver pushato la nuvoa todo
-            this.newTodo = ''
-            
-        },
-        doneFunction: function(element){
-            if( element.done == true ){
-                element.done = false
-            } else {
-                element.done = true
+     
+            },
+
+            /* Funzione booleana per cambiare lo stato dell'attributo done
+            legata alla condizione if ternaria scritta nel v-bind del tag <p> dell'HTML
+            per rimuovere o aggiungere la classe done_class */
+            doneAddRemove: function(element){
+                if(element.done == true) {
+                    element.done = false
+                } else {
+                    element.done = true
+                }
             }
-        }
+         },
     }
 )
+
+// && !this.todos.includes(newStringObj)
