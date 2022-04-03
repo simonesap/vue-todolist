@@ -19,13 +19,13 @@
         </div>
 
         
-        <div class="container d-flex flex-start mt-5 rounded-3 bg_grey p-5 ">
+        <div class="container mt-5 rounded-3 bg_grey p-5 ">
             <!--Questo div, con il v-if compare quando la lunghezza dell'array è maggiore di zero-->
             <!--Comnpare quando v-if è true-->
             <div class="w-50 mx-auto d-flex flex-column" v-if="todos.length > 0">
-                <ul>
+                <ul class="d-flex flex-start">
                     <li v-for="(todo, index) in todos" :key="index" class="d-flex mb-3 justify-content-between bg_grey border border-dark align-items-center">
-                        <p :class="(todo.done == true) ? 'done' : ''" @click="done(todo)" class="text-b">{{todo.text}} </p>
+                        <p :class="(todo.done == true) ? 'doneFunction()' : ''" @click="done(todo)" class="text-b">{{todo.text}} </p>
                         <i class="fa-solid fa-circle-xmark text-danger" @click="methodRemoveTodo(index)"></i>
                     </li>
                 </ul>

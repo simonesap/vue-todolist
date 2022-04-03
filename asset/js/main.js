@@ -57,10 +57,9 @@ var app = new Vue(
             }
             // Svuotare l'input dopo aver pushato la nuvoa todo
             this.newTodo = ''
-
             
         },
-        done: function(element){
+        doneFunction: function(element){
             if( element.done == true ){
                 element.done = false
             } else {
